@@ -1,3 +1,4 @@
+import dao.ConfiguracionJDBC;
 import dao.impl.H2Connection;
 import dao.impl.OdontologoDAOH2;
 import dao.impl.OdontologoDAOMemoria;
@@ -12,8 +13,14 @@ public class Main {
     public static void main(String[] args) {
         //H2Connection.crearTabla();
 
+
+        /* Establezco coneccion con el archivo ConfiguracionJDBC*/
+        ConfiguracionJDBC configuracion = new ConfiguracionJDBC();
+        configuracion.conectarConBasesDeDatos();
         OdontologoDAOMemoria odontologoDaoMemoria = new OdontologoDAOMemoria();
         OdontologoDAOH2 odontologoDaoH2 = new OdontologoDAOH2();
+
+
 
         OdontologoService odontologoService = new OdontologoService();
         odontologoService.setOdontologoDAO(odontologoDaoH2);
