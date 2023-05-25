@@ -8,8 +8,11 @@ import java.util.List;
 public class OdontologoService {
     private OdontologoDAO odontologoDAO;
 
-    /*Inyeccion a traves del constructor*/
-    public OdontologoService(OdontologoDAO odontologoDAO) {
+    public OdontologoService() {
+        //this.odontologoDAO = odontologoDAO;
+    }
+
+    public void setOdontologoDAO(OdontologoDAO odontologoDAO) {
         this.odontologoDAO = odontologoDAO;
     }
 
