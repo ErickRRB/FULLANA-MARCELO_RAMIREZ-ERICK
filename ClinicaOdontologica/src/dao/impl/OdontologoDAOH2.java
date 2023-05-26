@@ -62,6 +62,7 @@ public class OdontologoDAOH2 implements OdontologoDAO<Odontologo> {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
+
                 Integer matricula = resultSet.getInt("matricula");
                 String nombre = resultSet.getString("nombre");
                 String apellido = resultSet.getString("apellido");

@@ -11,25 +11,20 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        //H2Connection.crearTabla();
-
-
-        /* Establezco coneccion con el archivo ConfiguracionJDBC*/
         ConfiguracionJDBC configuracion = new ConfiguracionJDBC();
         configuracion.conectarConBasesDeDatos();
-        OdontologoDAOMemoria odontologoDaoMemoria = new OdontologoDAOMemoria();
-        OdontologoDAOH2 odontologoDaoH2 = new OdontologoDAOH2();
-
-
+        OdontologoDAOH2 odontologoDAOH2 = new OdontologoDAOH2(configuracion);
+        OdontologoDAOMemoria odontologoDAOMemoria = new OdontologoDAOMemoria(new ArrayList<>());
 
         OdontologoService odontologoService = new OdontologoService();
-        odontologoService.setOdontologoDAO(odontologoDaoH2);
+        odontologoService.setOdontologoDAO(odontologoDAOH2);
+
         List<Odontologo> odontologosH2 = new ArrayList<>();
         List<Odontologo> odontologosMemoria = new ArrayList<>();
 
-        Odontologo o1 = new Odontologo(123, "Elsa", "Quito");
-        Odontologo o2 = new Odontologo(456, "Esteban", "Quito");
-        Odontologo o3 = new Odontologo(789, "Solomeo", "Paredes");
+        Odontologo o1 = new Odontologo(7, "Jorge", "Pruebas");
+        Odontologo o2 = new Odontologo(8, "Jorgito", "Repruebas");
+        Odontologo o3 = new Odontologo(9, "Holas", "MasPruebas");
 
         odontologoService.guardarOdontologo(o1);
         odontologoService.guardarOdontologo(o2);
@@ -37,30 +32,22 @@ public class Main {
 
         odontologosH2 = odontologoService.listarOdontologos();
 
-        System.out.println();
-        System.out.println("Odontologos almacenados en H2:\n");
+        System.out.println("Odontólogos almacenados en H2:");
         for (Odontologo odontologo : odontologosH2) {
             System.out.println(odontologo.toString());
         }
-        System.out.println();
 
-        odontologoService.setOdontologoDAO(odontologoDaoMemoria);
-
-        Odontologo o4 = new Odontologo(123, "Estiven", "Sigal");
-        //o4.setId(1L);
-        Odontologo o5 = new Odontologo(456, "Fulano", "Fulanito");
-        //o5.setId(2L);
-        Odontologo o6 = new Odontologo(789, "Mengano", "Menganito");
-        //o6.setId(3L);
+        odontologoService.setOdontologoDAO(odontologoDAOMemoria);
+        Odontologo o4 = new Odontologo(123, "Marcelo", "Fullana");
+        Odontologo o5 = new Odontologo(456, "Erick", "RAmirez");
+        Odontologo o6 = new Odontologo(789, "Luciana", "Murga");
 
         odontologoService.guardarOdontologo(o4);
         odontologoService.guardarOdontologo(o5);
         odontologoService.guardarOdontologo(o6);
-
         odontologosMemoria = odontologoService.listarOdontologos();
 
-        System.out.println();
-        System.out.println("Odontologos almacenados en Memoria:\n");
+        System.out.println("Odontólogos almacenados en Memoria:");
         for (Odontologo odontologo : odontologosMemoria) {
             System.out.println(odontologo.toString());
         }

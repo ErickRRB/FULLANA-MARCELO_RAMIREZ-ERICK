@@ -23,7 +23,7 @@ public class ConfiguracionJDBC {
     public ConfiguracionJDBC() {
         this.jdbcDriver= "org.h2.Driver";
         //this.jdbcDriver="C:/Program Files (x86)/H2/bin/h2-2.1.214.jar";
-        this.url = "jdbc:h2:tcp://localhost/~/odontologo;MODE=MySQL;INIT=RUNSCRIPT FROM 'script.sql'";
+        this.url = "jdbc:h2:~/odontologo;MODE=MySQL;INIT=RUNSCRIPT FROM './src/script.sql'";
         this.usuario= "sa";
         this.password="";
     }
