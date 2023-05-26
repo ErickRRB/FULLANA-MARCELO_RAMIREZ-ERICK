@@ -2,20 +2,13 @@ package dao.impl;
 
 import dao.OdontologoDAO;
 import entities.Odontologo;
-//import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import dao.ConfiguracionJDBC;
 
-import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-
-import static dao.impl.H2Connection.getConnection;
-//import java.util.logging.Logger;
 
 public class OdontologoDAOH2 implements OdontologoDAO<Odontologo> {
 
@@ -34,7 +27,7 @@ public class OdontologoDAOH2 implements OdontologoDAO<Odontologo> {
     @Override
     public void guardar(Odontologo odontologo) {
         Connection connection = configuracion.conectarConBasesDeDatos();
-        Statement statement = null;
+        Statement statement;
         String query = String.format("INSERT INTO odontologos VALUES('%s','%s','%s')", odontologo.getMatricula(),
                 odontologo.getNombre(), odontologo.getApellido());
         try {
@@ -46,16 +39,14 @@ public class OdontologoDAOH2 implements OdontologoDAO<Odontologo> {
             logger.warning("No se ha guardado el odontologo");
             throw new RuntimeException(e);
         }
-        logger.info("Se ha guardado el odontologo");
-
-        return;
+        logger.info("Se ha guardado el odontologo: " + odontologo.getMatricula().toString() + " " +  odontologo.getNombre() + " " + odontologo.getApellido() );
     }
 
 
     @Override
     public List<Odontologo> listar() {
         Connection connection = configuracion.conectarConBasesDeDatos();
-        Statement statement = null;
+        Statement statement;
         String query = String.format("SELECT * FROM odontologos");
         List<Odontologo> odontologos = new ArrayList<>();
         try {

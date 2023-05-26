@@ -1,5 +1,4 @@
 import dao.ConfiguracionJDBC;
-import dao.impl.H2Connection;
 import dao.impl.OdontologoDAOH2;
 import dao.impl.OdontologoDAOMemoria;
 import entities.Odontologo;
@@ -22,9 +21,9 @@ public class Main {
         List<Odontologo> odontologosH2 = new ArrayList<>();
         List<Odontologo> odontologosMemoria = new ArrayList<>();
 
-        Odontologo o1 = new Odontologo(7, "Jorge", "Pruebas");
-        Odontologo o2 = new Odontologo(8, "Jorgito", "Repruebas");
-        Odontologo o3 = new Odontologo(9, "Holas", "MasPruebas");
+        Odontologo o1 = new Odontologo(25, "Jorge", "Pruebas");
+        Odontologo o2 = new Odontologo(26, "Jorgito", "Repruebas");
+        Odontologo o3 = new Odontologo(27, "Holas", "MasPruebas");
 
         odontologoService.guardarOdontologo(o1);
         odontologoService.guardarOdontologo(o2);
